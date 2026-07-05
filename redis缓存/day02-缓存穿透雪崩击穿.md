@@ -1,0 +1,159 @@
+# day02 - 缓存穿透 / 雪崩 / 击穿
+
+> 📅 2026-07-05 | 🏷️ Redis / 缓存问题
+
+---
+
+## 一、背景：为什么要用缓存
+
+```
+用户请求 → 先查 Redis → 有缓存直接返回
+                        → 无缓存则查 MySQL → 写入 Redis → 返回
+```
+
+缓存大大提高性能，但也引入了三大经典问题。
+
+---
+
+## 二、缓存穿透
+
+### 是什么
+
+查询一个**根本不存在**的数据（id = -1），缓存和数据库中都没有，每次请求都打到数据库。
+
+```
+请求 id=-1 → Redis（没有）→ MySQL（也没有）→ 返回空
+                ↑ 每个这样的请求都穿透到底层 ↓
+```
+
+### 解决方案
+
+| 方案 | 做法 | 优缺点 |
+|------|------|--------|
+| **布隆过滤器** | 用布隆过滤器提前判断 key 是否可能存在 | 内存省，但有误判率 |
+| **缓存空值** | 查不到也存一个空值，设置短过期时间 | 简单，但浪费一些内存 |
+| **参数校验** | 请求入口做合法性校验，拦截非法 id | 基础防护，不是万能的 |
+
+```java
+// 缓存空值示例
+public Object queryById(Long id) {
+    String key = "item:" + id;
+    Object value = redis.get(key);
+    if (value != null) {
+        return value;  // 命中缓存（包括缓存的空值标记）
+    }
+    // 查数据库
+    Object dbResult = db.query(id);
+    if (dbResult == null) {
+        // 缓存空值，防止穿透，2分钟后过期
+        redis.setex(key, 120, "NULL");
+    } else {
+        redis.set(key, dbResult);
+    }
+    return dbResult;
+}
+```
+
+---
+
+## 三、缓存雪崩
+
+### 是什么
+
+**同一时间大量 key 过期**，或是 **Redis 宕机**，所有请求瞬间砸到数据库。
+
+```
+Redis 中 100 个热点 key 同时过期
+        ↓
+100 个请求全部打到 MySQL
+        ↓
+数据库压力暴增 → 可能宕机
+```
+
+### 解决方案
+
+| 方案 | 做法 |
+|------|------|
+| **过期时间加随机值** | `EXPIRE key 3600 + random(0, 300)` 避免同时过期 |
+| **多级缓存** | Redis + 本地缓存（Caffeine / Guava）双重保护 |
+| **Redis 集群** | 主从 + 哨兵 / Cluster，保证高可用 |
+| **限流降级** | 用 Sentinel 做限流，数据库扛不住时返回兜底数据 |
+
+```java
+// 过期时间加随机值
+int ttl = 3600 + ThreadLocalRandom.current().nextInt(300);
+redis.setex(key, ttl, value);
+```
+
+---
+
+## 四、缓存击穿
+
+### 是什么
+
+一个**热点 key 过期**，刚好大量并发请求同时查这个 key，全部穿透到数据库。
+
+```
+热点 key "item:100" 过期
+         ↓
+1000 个并发请求同时到达
+         ↓
+Redis 刚好没有 → 1000 个请求全部查 MySQL
+         ↓
+这个热点 key 就叫"被击穿"
+```
+
+> ⚠️ 和雪崩的区别：雪崩是**大量 key 同时过期**，击穿是**一个热点 key 过期**。
+
+### 解决方案
+
+| 方案 | 做法 |
+|------|------|
+| **互斥锁** | 查不到缓存时加锁，只让一个线程去查数据库、写缓存 |
+| **逻辑过期** | 热点 key 永不过期，把过期时间存在 value 里，异步刷新 |
+| **预热** | 活动开始前手动把热点数据加载到缓存 |
+
+```java
+// 互斥锁方案
+public Object queryById(Long id) {
+    String key = "item:" + id;
+    Object value = redis.get(key);
+    if (value != null) return value;
+
+    // 加锁，只让一个线程查库
+    String lockKey = "lock:" + id;
+    try {
+        if (redis.setnx(lockKey, "1", 10)) {  // SETNX + 过期时间
+            Object dbResult = db.query(id);
+            redis.set(key, dbResult);
+            return dbResult;
+        } else {
+            Thread.sleep(50);     // 没抢到锁，等一下重试
+            return queryById(id); // 递归重试
+        }
+    } finally {
+        redis.del(lockKey);      // 释放锁
+    }
+}
+```
+
+---
+
+## 五、三者对比总结
+
+| 问题 | 原因 | 核心解法 |
+|------|------|----------|
+| **穿透** | 查不存在的数据 | 布隆过滤器 / 缓存空值 |
+| **雪崩** | 大量 key 同时过期 / Redis 宕机 | 过期时间 + 随机值 / 集群 |
+| **击穿** | 一个热点 key 过期 | 互斥锁 / 逻辑过期 |
+
+```
+记忆口诀：
+  穿透 → 数据不存在，白查 → 挡在外面
+  雪崩 → 大面积过期，同时挂 → 分散时间
+  击穿 → 热点没了，集中打 → 排队查库
+```
+
+---
+
+> 💡 实际开发中，这三种问题通常会结合使用多种方案来兜底。
