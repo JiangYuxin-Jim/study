@@ -13,6 +13,9 @@
 |------|------|------|
 | [day01 - 认识 Redis](./redis缓存/day01-认识redis.md) | Redis 介绍、数据类型、常用命令 | ✅ |
 | [day02 - 缓存穿透/雪崩/击穿](./redis缓存/day02-缓存穿透雪崩击穿.md) | 三大缓存问题及解决方案 | ✅ |
+| [day03 - 优惠券秒杀](./redis缓存/day03-优惠券秒杀.md) | 全局唯一ID、RedisIdWorker、超卖问题、乐观锁/悲观锁、一人一单 | ✅ |
+| [day04 - 分布式锁](./redis缓存/day04-分布式锁.md) | SETNX 演进路线、UUID + Lua 原子解锁、Redisson（WatchDog/可重入/RedLock） | ✅ |
+| [day05 - 秒杀优化与消息队列](./redis缓存/day05-秒杀优化与消息队列.md) | Lua 脚本前置判断、异步下单、Redis 消息队列（List/PubSub/Stream）、消费者组 | ✅ |
 
 
 

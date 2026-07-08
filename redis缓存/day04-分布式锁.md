@@ -428,6 +428,8 @@ boolean tryLock(long waitTime, long leaseTime, TimeUnit unit);
 **背景**：如果锁设置了 TTL，但业务还没执行完，锁就过期了，怎么办？
 
 **Redisson 的解决方案 — WatchDog 看门狗**：
+![图 2](../images/e7a258cc8322880d2547c5ddeea87a28aecae4e721e20f39e44c549b8754dbf6.png)  
+
 
 ```
 线程A: [加锁]──────────[业务执行中...]──────────[释放锁]
