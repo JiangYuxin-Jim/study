@@ -361,9 +361,15 @@ Objects.toString(a, "默认值"); // "默认值"
 
 ---
 
-## 7. BigInteger 与 BigDecimal
+## 8. BigInteger 与 BigDecimal
 
-### 7.1 BigInteger — 大整数运算
+### 8.1 BigInteger — 大整数运算
+
+Java 中基本整数类型有范围限制：
+- `int`：约 ±21 亿（32 位）
+- `long`：约 ±922 亿亿（64 位）
+
+超出范围会**溢出**（变成负数），这时就需要 `java.math.BigInteger`。
 
 ```java
 import java.math.BigInteger;
@@ -375,52 +381,203 @@ BigInteger b1 = new BigInteger("999999999999999999999999");
 BigInteger b2 = new BigInteger("2");
 
 // 加减乘除（必须用方法，不能用 +-*/）
-BigInteger sum = b1.add(b2);          // 加
-BigInteger diff = b1.subtract(b2);    // 减
-BigInteger prod = b1.multiply(b2);    // 乘
-BigInteger quot = b1.divide(b2);      // 除
-BigInteger[] result = b1.divideAndRemainder(b2);  // 除 + 余数
+BigInteger sum   = b1.add(b2);                    // 加
+BigInteger diff  = b1.subtract(b2);               // 减
+BigInteger prod  = b1.multiply(b2);               // 乘
+BigInteger quot  = b1.divide(b2);                 // 除
+BigInteger[] res = b1.divideAndRemainder(b2);     // 除 + 余数
 
 System.out.println(sum);    // 1000000000000000000000001
+System.out.println(res[0]); // 商
+System.out.println(res[1]); // 余数
+
+// 比较（不能用 > < ==）
+b1.compareTo(b2);  // 正数/0/负数
+b1.equals(b2);     // true/false
+
+// int/long 转 BigInteger
+BigInteger bi = BigInteger.valueOf(100);          // 推荐，只能转 long 范围内的值
+BigInteger bi2 = BigInteger.valueOf(Long.MAX_VALUE);
+
+// BigInteger → 基本类型
+long l = b1.longValue();       // 不超 long 范围
+int  i = b1.intValue();        // 不超 int 范围
+String s = b1.toString();      // 最安全，不会溢出
+
+// 常量
+BigInteger.ZERO;   // 0
+BigInteger.ONE;    // 1
+BigInteger.TEN;    // 10
 ```
 
-### 7.2 BigDecimal — 精确小数运算
+### 8.2 BigDecimal — 精确小数运算
+
+#### 为什么需要 BigDecimal？
+
+计算机用二进制存储浮点数，很多十进制小数无法精确表示：
+
+```java
+System.out.println(0.1 + 0.2);  // 0.30000000000000004（不精确！）
+System.out.println(1.0 - 0.9);  // 0.09999999999999998
+
+// 对于金融、计费等场景，这种误差不能接受 → 用 BigDecimal
+```
+
+#### 创建 BigDecimal
 
 ```java
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-// 问题：double 精度丢失
-System.out.println(0.1 + 0.2);  // 0.30000000000000004（不精确！）
+// ✅ 正确姿势：用字符串
+BigDecimal d1 = new BigDecimal("0.1");    // 精确
+BigDecimal d2 = new BigDecimal("0.2");    // 精确
 
-// 解决：用 BigDecimal
-BigDecimal d1 = new BigDecimal("0.1");    // 必须用字符串！
-BigDecimal d2 = new BigDecimal("0.2");    // 不能用 double 参数
+// ❌ 错误姿势：用 double
+BigDecimal bad = new BigDecimal(0.1);     // 实际存的是 0.10000000000000000555...
+System.out.println(bad);                  // 0.1000000000000000055511151231257827021181583404541015625
 
-BigDecimal sum = d1.add(d2);
+// ✅ 推荐：用 valueOf
+BigDecimal d = BigDecimal.valueOf(0.1);   // 内部调用了 Double.toString()，精确
+```
+
+#### 四则运算
+
+```java
+BigDecimal d1 = new BigDecimal("0.1");
+BigDecimal d2 = new BigDecimal("0.2");
+
+BigDecimal sum = d1.add(d2);              // 加
+BigDecimal diff = d1.subtract(d2);        // 减
+BigDecimal prod = d1.multiply(d2);        // 乘
+
 System.out.println(sum);  // 0.3（精确！）
+```
 
-// 除法 — 必须指定精度和舍入模式
+#### 除法 — 必须指定精度和舍入模式
+
+```java
 BigDecimal d3 = new BigDecimal("10");
 BigDecimal d4 = new BigDecimal("3");
-// d3.divide(d4);  // ❌ 非整除会抛异常 ArithmeticException
 
-// ✅ 指定精度
+// d3.divide(d4);  // ❌ 非整除会抛 ArithmeticException！
+
+// ✅ 指定精度（保留 2 位小数，四舍五入）
 BigDecimal result = d3.divide(d4, 2, RoundingMode.HALF_UP);
-System.out.println(result);  // 3.33（四舍五入保留2位小数）
+System.out.println(result);  // 3.33
 
-// 舍入模式
-// RoundingMode.HALF_UP      — 四舍五入（最常用）
-// RoundingMode.HALF_DOWN    — 五舍六入
-// RoundingMode.CEILING      — 向上取整
-// RoundingMode.FLOOR        — 向下取整
-// RoundingMode.UP           — 远离零取整
-// RoundingMode.DOWN         — 趋近零取整
+// 重载形式
+result = d3.divide(d4, 2, RoundingMode.HALF_UP);             // 指定小数位数 + 舍入模式
+result = d3.divide(d4, new MathContext(2, RoundingMode.HALF_UP));  // 用 MathContext
+```
+
+#### 舍入模式
+
+| 模式 | 含义 | 示例（2.5 / -2.5→整数） |
+|------|------|------------------------|
+| `HALF_UP` | 四舍五入（最常用） | 3 / -3 |
+| `HALF_DOWN` | 五舍六入 | 2 / -2 |
+| `HALF_EVEN` | 银行家舍入（五看奇偶） | 2 / -2 |
+| `CEILING` | 向上取整（往正无穷） | 3 / -2 |
+| `FLOOR` | 向下取整（往负无穷） | 2 / -3 |
+| `UP` | 远离零取整 | 3 / -3 |
+| `DOWN` | 趋近零取整（截断） | 2 / -2 |
+
+> 💡 **银行家舍入（HALF_EVEN）**：正好 5 时看前一位，奇进偶不进，可减少统计偏差，银行常用。
+
+#### 常用方法
+
+```java
+BigDecimal d = new BigDecimal("3.14159");
+
+// 设置小数位数（返回新对象）
+d.setScale(2, RoundingMode.HALF_UP);      // 3.14
+
+// 比较（不能用 equals！）
+BigDecimal a = new BigDecimal("0.10");
+BigDecimal b = new BigDecimal("0.1");
+
+System.out.println(a.equals(b));  // false!（因为精度不同，0.10 vs 0.1）
+System.out.println(a.compareTo(b));  // 0（正确，数值相等）
+
+// 比较大小
+BigDecimal x = new BigDecimal("10");
+BigDecimal y = new BigDecimal("20");
+x.compareTo(y);   // -1（小于）
+y.compareTo(x);   // 1（大于）
+
+// 常用常量
+BigDecimal.ZERO;
+BigDecimal.ONE;
+BigDecimal.TEN;
+```
+
+#### 金融计算实践
+
+```java
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public class MoneyCalculator {
+
+    /** 加法，保留两位小数 */
+    public static BigDecimal add(BigDecimal a, BigDecimal b) {
+        return a.add(b).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    /** 乘法后保留两位小数（如单价×数量） */
+    public static BigDecimal multiply(BigDecimal price, BigDecimal qty) {
+        return price.multiply(qty).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    /** 计算折扣 */
+    public static BigDecimal discount(BigDecimal price, double rate) {
+        return price.multiply(BigDecimal.valueOf(rate))
+                     .setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public static void main(String[] args) {
+        BigDecimal price = new BigDecimal("19.99");
+        BigDecimal qty   = new BigDecimal("3");
+
+        BigDecimal total = multiply(price, qty);
+        System.out.println("总价: " + total);               // 59.97
+
+        BigDecimal afterDiscount = discount(total, 0.8);
+        System.out.println("打8折: " + afterDiscount);      // 47.98
+    }
+}
+```
+
+### 8.3 BigInteger vs BigDecimal 对比
+
+| 特性 | BigInteger | BigDecimal |
+|------|-----------|------------|
+| 用途 | 大整数运算 | 精确小数运算 |
+| 构造参数 | 字符串、int、long | 字符串、int、double、long |
+| 创建推荐 | `valueOf(long)` | `valueOf(double)` 或字符串 |
+| 除法 | 整除 + 余数(`divideAndRemainder`) | 必须指定精度和舍入模式 |
+| 比较 | `compareTo()`，少用 `equals()` | `compareTo()`，别用 `equals()` |
+| 不可变性 | ✅ 不可变 | ✅ 不可变 |
+| 常用场景 | 大数阶乘、RSA 加密、超大整数计算 | 金额、税率、科学计算 |
+
+#### 大数阶乘示例
+
+```java
+public static BigInteger factorial(int n) {
+    BigInteger result = BigInteger.ONE;
+    for (int i = 2; i <= n; i++) {
+        result = result.multiply(BigInteger.valueOf(i));
+    }
+    return result;
+}
+
+System.out.println(factorial(50));  // 30414093201713378043612608166064768844377641568960512000000000000
 ```
 
 ---
 
-## 8. 常用 API 对比总结
+## 9. 常用 API 对比总结
 
 | 类 | 包 | 特点 | 常用方法 |
 |----|----|------|---------|
@@ -434,7 +591,7 @@ System.out.println(result);  // 3.33（四舍五入保留2位小数）
 
 ---
 
-## 9. 总结
+## 10. 总结
 
 | 知识点 | 核心要点 |
 |--------|----------|
