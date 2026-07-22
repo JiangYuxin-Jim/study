@@ -1,136 +1,116 @@
-<svg viewBox="0 0 960 580" width="960" height="580" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1000" viewBox="0 0 900 1000">
   <!-- 标题 -->
   <text x="20" y="30" font-size="20" font-weight="650" fill="#172033">📚 学习历程时间线</text>
-  <text x="20" y="50" font-size="13" fill="#5b6475">2026-07-05 → 2026-07-22 · 每格代表当天学习的内容板块</text>
+  <text x="20" y="50" font-size="13" fill="#5b6475">从上到下按时间排列 · 课程结束会更新</text>
 
   <!-- 图例 -->
-  <rect x="640" y="18" width="14" height="14" rx="3" fill="#3b82f6" opacity="0.8"/>
-  <text x="660" y="29" font-size="12" fill="#172033">JavaSE</text>
-  <rect x="730" y="18" width="14" height="14" rx="3" fill="#10b981" opacity="0.8"/>
-  <text x="750" y="29" font-size="12" fill="#172033">JavaWeb</text>
-  <rect x="820" y="18" width="14" height="14" rx="3" fill="#f59e0b" opacity="0.8"/>
-  <text x="840" y="29" font-size="12" fill="#172033">Redis</text>
+  <rect x="530" y="18" width="14" height="14" rx="3" fill="#f59e0b" opacity="0.85"/>
+  <text x="550" y="29" font-size="12" fill="#172033">Redis</text>
+  <rect x="620" y="18" width="14" height="14" rx="3" fill="#3b82f6" opacity="0.85"/>
+  <text x="640" y="29" font-size="12" fill="#172033">JavaSE</text>
+  <rect x="710" y="18" width="14" height="14" rx="3" fill="#10b981" opacity="0.85"/>
+  <text x="730" y="29" font-size="12" fill="#172033">JavaWeb</text>
 
-  <!-- 左侧分类标签 -->
-  <text x="60" y="112" font-size="12" font-weight="600" fill="#172033" text-anchor="end">Redis</text>
-  <text x="60" y="160" font-size="12" font-weight="600" fill="#172033" text-anchor="end">JavaSE 基础</text>
-  <text x="60" y="208" font-size="12" font-weight="600" fill="#172033" text-anchor="end">JavaSE 面向对象</text>
-  <text x="60" y="256" font-size="12" font-weight="600" fill="#172033" text-anchor="end">JavaSE 进阶</text>
-  <text x="60" y="304" font-size="12" font-weight="600" fill="#172033" text-anchor="end">JavaWeb</text>
+  <!-- 时间线主线条 -->
+  <line x1="120" y1="80" x2="120" y2="960" stroke="#e2e8f0" stroke-width="3"/>
 
-  <!-- 水平分隔线 -->
-  <line x1="70" y1="128" x2="940" y2="128" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="70" y1="176" x2="940" y2="176" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="70" y1="224" x2="940" y2="224" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="70" y1="272" x2="940" y2="272" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
-  <line x1="70" y1="320" x2="940" y2="320" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 4"/>
+  <!-- ===== 7/5 周日 - Redis ===== -->
+  <text x="15" y="108" font-size="14" font-weight="600" fill="#172033">7/5</text>
+  <text x="18" y="122" font-size="10" fill="#94a3b8">周日</text>
+  <circle cx="120" cy="115" r="6" fill="#f59e0b"/>
+  <rect x="145" y="95" width="260" height="40" rx="6" fill="#f59e0b" opacity="0.85"/>
+  <text x="275" y="120" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">Redis 基础入门</text>
 
-  <!-- 日期标签 -->
-  <text x="98" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/5</text>
-  <text x="146" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/6</text>
-  <text x="194" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/7</text>
-  <text x="242" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/8</text>
-  <text x="290" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/9</text>
-  <text x="338" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/10</text>
-  <text x="386" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/11</text>
-  <text x="434" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/12</text>
-  <text x="482" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/13</text>
-  <text x="530" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/14</text>
-  <text x="578" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/15</text>
-  <text x="626" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/16</text>
-  <text x="674" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/17</text>
-  <text x="722" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/18</text>
-  <text x="770" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/19</text>
-  <text x="818" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/20</text>
-  <text x="866" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/21</text>
-  <text x="914" y="350" font-size="11" fill="#5b6475" text-anchor="middle">7/22</text>
+  <!-- ===== 7/6 周一 ===== -->
+  <text x="18" y="172" font-size="14" font-weight="600" fill="#94a3b8">7/6</text>
+  <circle cx="120" cy="175" r="6" fill="#e2e8f0"/>
+  <text x="145" y="179" font-size="12" fill="#94a3b8">— 休息 —</text>
 
-  <!-- 星期标签 -->
-  <text x="98" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">三</text>
-  <text x="146" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">四</text>
-  <text x="194" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">五</text>
-  <text x="242" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">六</text>
-  <text x="290" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">日</text>
-  <text x="338" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">一</text>
-  <text x="386" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">二</text>
-  <text x="434" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">三</text>
-  <text x="482" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">四</text>
-  <text x="530" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">五</text>
-  <text x="578" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">六</text>
-  <text x="626" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">日</text>
-  <text x="674" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">一</text>
-  <text x="722" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">二</text>
-  <text x="770" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">三</text>
-  <text x="818" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">四</text>
-  <text x="866" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">五</text>
-  <text x="914" y="364" font-size="10" fill="#94a3b8" text-anchor="middle">六</text>
+  <!-- ===== 7/7 周二 - Redis ===== -->
+  <text x="15" y="232" font-size="14" font-weight="600" fill="#172033">7/7</text>
+  <text x="18" y="246" font-size="10" fill="#94a3b8">周二</text>
+  <circle cx="120" cy="235" r="6" fill="#f59e0b"/>
+  <rect x="145" y="215" width="260" height="40" rx="6" fill="#f59e0b" opacity="0.85"/>
+  <text x="275" y="240" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">优惠券秒杀 · 分布式锁</text>
 
-  <!-- ===== 数据 ===== -->
+  <!-- ===== 7/8 周三 - Redis ===== -->
+  <text x="15" y="296" font-size="14" font-weight="600" fill="#172033">7/8</text>
+  <text x="18" y="310" font-size="10" fill="#94a3b8">周三</text>
+  <circle cx="120" cy="299" r="6" fill="#f59e0b"/>
+  <rect x="145" y="279" width="260" height="40" rx="6" fill="#f59e0b" opacity="0.85"/>
+  <text x="275" y="304" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">秒杀优化 · 消息队列</text>
 
-  <!-- Redis: 7/5 7/7 7/8 7/9 -->
-  <!-- col1 -->
-  <rect x="75" y="88" width="46" height="36" rx="4" fill="#f59e0b" opacity="0.85"/>
-  <text x="98" y="110" font-size="10" fill="#ffffff" text-anchor="middle">基础入门</text>
-  <!-- col3 -->
-  <rect x="171" y="88" width="46" height="36" rx="4" fill="#f59e0b" opacity="0.85"/>
-  <text x="194" y="110" font-size="10" fill="#ffffff" text-anchor="middle">秒杀/锁</text>
-  <!-- col4 -->
-  <rect x="219" y="88" width="46" height="36" rx="4" fill="#f59e0b" opacity="0.85"/>
-  <text x="242" y="110" font-size="10" fill="#ffffff" text-anchor="middle">MQ</text>
-  <!-- col5 -->
-  <rect x="267" y="88" width="46" height="36" rx="4" fill="#f59e0b" opacity="0.85"/>
-  <text x="290" y="110" font-size="10" fill="#ffffff" text-anchor="middle">探店</text>
+  <!-- ===== 7/9 周四 - 大满贯 ===== -->
+  <text x="15" y="363" font-size="14" font-weight="600" fill="#172033">7/9</text>
+  <text x="18" y="377" font-size="10" fill="#94a3b8">周四</text>
+  <circle cx="120" cy="364" r="8" fill="#f59e0b"/>
+  <rect x="145" y="340" width="260" height="24" rx="6" fill="#f59e0b" opacity="0.85"/>
+  <text x="275" y="356" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Redis 达人探店</text>
+  <rect x="145" y="367" width="260" height="24" rx="6" fill="#3b82f6" opacity="0.85"/>
+  <text x="275" y="383" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">JavaSE 入门（变量/流程/数组/JVM）</text>
+  <rect x="145" y="394" width="260" height="24" rx="6" fill="#10b981" opacity="0.85"/>
+  <text x="275" y="410" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">JavaWeb 全套 15 篇笔记</text>
 
-  <!-- JavaSE 基础: 7/9(col5) -->
-  <rect x="267" y="136" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.85"/>
-  <text x="290" y="158" font-size="10" fill="#ffffff" text-anchor="middle">入门到JVM</text>
+  <!-- ===== 7/10-7/15 休息 ===== -->
+  <text x="15" y="460" font-size="13" font-weight="600" fill="#94a3b8">7/10</text>
+  <circle cx="120" cy="462" r="6" fill="#fbbf24"/>
+  <text x="145" y="458" font-size="11" fill="#f59e0b" font-weight="600">⬇ 休息</text>
+  <text x="145" y="474" font-size="11" fill="#94a3b8">7/11 六 · 7/12 日 · 7/13 一 · 7/14 二 · 7/15 三</text>
 
-  <!-- JavaSE 面向对象: 7/16(col12), 7/19(col15) -->
-  <rect x="603" y="184" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.85"/>
-  <text x="626" y="206" font-size="10" fill="#ffffff" text-anchor="middle">OOP/API</text>
-  <rect x="747" y="184" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.75"/>
-  <text x="770" y="206" font-size="10" fill="#ffffff" text-anchor="middle">克隆/正则/日期</text>
+  <!-- ===== 7/16 周五 - JavaSE OOP ===== -->
+  <text x="15" y="524" font-size="14" font-weight="600" fill="#172033">7/16</text>
+  <text x="18" y="538" font-size="10" fill="#94a3b8">周五</text>
+  <circle cx="120" cy="527" r="6" fill="#3b82f6"/>
+  <rect x="145" y="507" width="260" height="40" rx="6" fill="#3b82f6" opacity="0.85"/>
+  <text x="275" y="532" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">面向对象编程 · String · 常用 API</text>
 
-  <!-- JavaSE 进阶: 7/20(col16), 7/21(col17), 7/22(col18) -->
-  <rect x="795" y="232" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.8"/>
-  <text x="818" y="254" font-size="10" fill="#ffffff" text-anchor="middle">集合(一)</text>
-  <rect x="843" y="232" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.85"/>
-  <text x="866" y="254" font-size="10" fill="#ffffff" text-anchor="middle">List/泛型</text>
-  <rect x="891" y="232" width="46" height="36" rx="4" fill="#3b82f6" opacity="0.95"/>
-  <text x="914" y="254" font-size="10" fill="#ffffff" text-anchor="middle">数据结构</text>
+  <!-- ===== 7/17-7/18 休息 ===== -->
+  <text x="15" y="595" font-size="13" font-weight="600" fill="#94a3b8">7/17</text>
+  <circle cx="120" cy="597" r="6" fill="#fbbf24"/>
+  <text x="145" y="593" font-size="11" fill="#f59e0b" font-weight="600">⬇ 休息</text>
+  <text x="145" y="609" font-size="11" fill="#94a3b8">7/18 日</text>
 
-  <!-- JavaWeb: 7/9(col5) -->
-  <rect x="267" y="280" width="46" height="36" rx="4" fill="#10b981" opacity="0.85"/>
-  <text x="290" y="302" font-size="10" fill="#ffffff" text-anchor="middle">全15篇</text>
+  <!-- ===== 7/19 周一 - JavaSE ===== -->
+  <text x="15" y="656" font-size="14" font-weight="600" fill="#172033">7/19</text>
+  <text x="18" y="670" font-size="10" fill="#94a3b8">周一</text>
+  <circle cx="120" cy="659" r="6" fill="#3b82f6"/>
+  <rect x="145" y="639" width="260" height="40" rx="6" fill="#3b82f6" opacity="0.75"/>
+  <text x="275" y="664" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">对象克隆 · 正则表达式 · 日期类</text>
 
-  <!-- X 轴 -->
-  <line x1="70" y1="380" x2="940" y2="380" stroke="#64748b" stroke-width="2"/>
+  <!-- ===== 7/20 周二 - JavaSE ===== -->
+  <text x="15" y="720" font-size="14" font-weight="600" fill="#172033">7/20</text>
+  <text x="18" y="734" font-size="10" fill="#94a3b8">周二</text>
+  <circle cx="120" cy="723" r="6" fill="#3b82f6"/>
+  <rect x="145" y="703" width="260" height="40" rx="6" fill="#3b82f6" opacity="0.8"/>
+  <text x="275" y="728" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">集合框架 · List · 泛型</text>
 
-  <!-- 休息日标记 -->
-  <text x="146" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="338" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="386" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="434" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="482" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="530" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="578" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="674" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
-  <text x="722" y="378" font-size="10" fill="#dc2626" text-anchor="middle">✕</text>
+  <!-- ===== 7/21 周三 - JavaSE ===== -->
+  <text x="15" y="784" font-size="14" font-weight="600" fill="#172033">7/21</text>
+  <text x="18" y="798" font-size="10" fill="#94a3b8">周三</text>
+  <circle cx="120" cy="787" r="6" fill="#3b82f6"/>
+  <rect x="145" y="767" width="260" height="40" rx="6" fill="#3b82f6" opacity="0.85"/>
+  <text x="275" y="792" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">ArrayList · LinkedList 源码</text>
 
-  <!-- 里程碑标记 -->
-  <text x="75" y="405" font-size="11" fill="#5b6475">↑ 7/5 开始学 Redis</text>
-  <text x="290" y="425" font-size="11" fill="#5b6475">↑ 7/9 JavaWeb + JavaSE 入门笔记</text>
-  <text x="603" y="445" font-size="11" fill="#5b6475">↑ 7/16 OOP &amp; String 开始</text>
-  <text x="795" y="465" font-size="11" fill="#5b6475">↑ 7/20 集合进阶阶段开始</text>
-  <text x="891" y="485" font-size="11" fill="#5b6475">↑ 7/22 上部学完 🎉</text>
+  <!-- ===== 7/22 周四 - JavaSE ===== -->
+  <text x="15" y="848" font-size="14" font-weight="600" fill="#172033">7/22</text>
+  <text x="18" y="862" font-size="10" fill="#94a3b8">周四</text>
+  <circle cx="120" cy="851" r="6" fill="#3b82f6"/>
+  <rect x="145" y="831" width="260" height="40" rx="6" fill="#3b82f6" opacity="0.95"/>
+  <text x="275" y="856" font-size="12" fill="#ffffff" font-weight="600" text-anchor="middle">数据结构 · Set 集合</text>
+  <text x="430" y="856" font-size="11" fill="#eab308" font-weight="600">🎉 上部学完</text>
 
-  <circle cx="75" cy="403" r="4" fill="#f59e0b"/>
-  <circle cx="290" cy="423" r="4" fill="#10b981"/>
-  <circle cx="603" cy="443" r="4" fill="#3b82f6"/>
-  <circle cx="795" cy="463" r="4" fill="#3b82f6"/>
-  <circle cx="914" cy="483" r="4" fill="#3b82f6"/>
+  <!-- 进度总览 -->
+  <text x="430" y="110" font-size="13" fill="#5b6475">已完成：</text>
+  <rect x="500" y="98" width="12" height="12" rx="2" fill="#f59e0b" opacity="0.85"/>
+  <text x="516" y="109" font-size="12" fill="#172033">Redis 篇</text>
+  <rect x="590" y="98" width="12" height="12" rx="2" fill="#10b981" opacity="0.85"/>
+  <text x="606" y="109" font-size="12" fill="#172033">JavaWeb</text>
+  <rect x="670" y="98" width="12" height="12" rx="2" fill="#3b82f6" opacity="0.85"/>
+  <text x="686" y="109" font-size="12" fill="#172033">JavaSE 上部</text>
 
-  <!-- 底部进度 -->
-  <text x="20" y="530" font-size="13" fill="#5b6475">已完成：Redis 篇 · JavaSE 上部 · JavaWeb 全套</text>
-  <text x="20" y="550" font-size="13" fill="#5b6475">进行中：JavaSE 下部（进阶）</text>
+  <text x="430" y="135" font-size="13" fill="#5b6475">进行中：</text>
+  <rect x="496" y="124" width="12" height="12" rx="2" fill="#3b82f6" opacity="0.85"/>
+  <text x="512" y="135" font-size="12" fill="#172033">JavaSE 下部（进阶）</text>
+
+  <!-- 剩余空间：可以继续往下加 -->
 </svg>

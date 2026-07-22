@@ -5,14 +5,6 @@
 
 ---
 
-## 📊 学习历程可视化
-
-> 下图直观展示了每天学习的内容分布，色块越深代表当天学习量越大。
-
-<img alt="学习历程时间线" src="./images/learning-timeline.svg" width="100%">
-
----
-
 ## 📂 目录
 
 ### Redis 缓存
@@ -67,3 +59,9 @@
 | [15 - 项目部署(Linux+Docker)](./javaweb/15-项目部署(Linux+Docker).md) | Linux 常用命令、Jar 包部署、Nginx 代理、Docker/Docker Compose | 2026-07-09 |
 
 ---
+
+## 📊 学习历程时间线
+
+> 从上到下按时间排列，每天学什么一目了然。
+
+<img alt="学习历程时间线" src="./images/learning-timeline.svg" width="100%">
