@@ -1,0 +1,210 @@
+<!doctype html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>学习历程可视化</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f8fafc;
+    --fg: #172033;
+    --muted: #5b6475;
+    --line: #64748b;
+    --neutral: #e2e8f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --fg: #e5e7eb;
+      --muted: #a3adbd;
+      --line: #94a3b8;
+      --neutral: #334155;
+    }
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14px/1.4 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  main {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 20px;
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .title { font-size: 20px; font-weight: 650; fill: var(--fg); }
+  .subtitle { font-size: 13px; fill: var(--muted); }
+  .label { font-size: 12px; font-weight: 600; fill: var(--fg); }
+  .small { font-size: 11px; fill: var(--muted); }
+  .xlabel { font-size: 11px; fill: var(--muted); text-anchor: middle; }
+  .legend-text { font-size: 12px; fill: var(--fg); }
+  .grid-line { stroke: var(--neutral); stroke-width: 1; stroke-dasharray: 4 4; }
+  .axis-line { stroke: var(--line); stroke-width: 1.5; }
+  .bar-label { font-size: 9px; fill: #fff; text-anchor: middle; dominant-baseline: central; }
+  .skill-label { font-size: 11px; fill: var(--fg); text-anchor: end; dominant-baseline: central; }
+</style>
+<main>
+  <svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Title -->
+    <text x="20" y="30" class="title">📚 学习历程时间线</text>
+    <text x="20" y="52" class="subtitle">2026-07-05 → 2026-07-22 · 每格代表当天学习的内容板块</text>
+
+    <!-- Legend -->
+    <rect x="640" y="20" width="14" height="14" rx="3" fill="#3b82f6" opacity="0.7"/>
+    <text x="660" y="31" class="legend-text">JavaSE 基础</text>
+
+    <rect x="760" y="20" width="14" height="14" rx="3" fill="#10b981" opacity="0.7"/>
+    <text x="780" y="31" class="legend-text">JavaWeb</text>
+
+    <rect x="640" y="42" width="14" height="14" rx="3" fill="#f59e0b" opacity="0.7"/>
+    <text x="660" y="53" class="legend-text">Redis</text>
+
+    <!-- ===== Grid settings ===== -->
+    <!--
+      Dates: 7/5, 7/6(rest), 7/7, 7/8, 7/9, 7/10(rest), 7/11(rest),
+             7/12(rest), 7/13(rest), 7/14(rest), 7/15(rest), 7/16, 7/17(rest),
+             7/18(rest), 7/19, 7/20, 7/21, 7/22
+
+      But we show continuous calendar: 7/5 to 7/22 = 18 days
+      Layout: 18 columns + spacing
+    -->
+    <!-- Y-axis labels (skill tracks) -->
+    <text x="60" y="110" class="skill-label">Redis</text>
+    <text x="60" y="155" class="skill-label">JavaSE 基础</text>
+    <text x="60" y="200" class="skill-label">JavaSE 面向对象</text>
+    <text x="60" y="245" class="skill-label">JavaSE 进阶</text>
+    <text x="60" y="290" class="skill-label">JavaWeb</text>
+    <text x="60" y="335" class="skill-label">项目实战</text>
+
+    <!-- Horizontal dividers -->
+    <line x1="70" y1="125" x2="940" y2="125" class="grid-line"/>
+    <line x1="70" y1="170" x2="940" y2="170" class="grid-line"/>
+    <line x1="70" y1="215" x2="940" y2="215" class="grid-line"/>
+    <line x1="70" y1="260" x2="940" y2="260" class="grid-line"/>
+    <line x1="70" y1="305" x2="940" y2="305" class="grid-line"/>
+
+    <!-- X-axis dates: 7/5 through 7/22 = 18 columns -->
+    <!-- Columns: x=75 + col*(width+gap), col=0..17, cell width=46, gap=2 -->
+    <!-- 75 + 17*48 = 891, plus 46 = 937, fits in 960 -->
+
+    <!-- Date labels -->
+    <text x="98" y="365" class="xlabel">7/5</text>
+    <text x="146" y="365" class="xlabel">7/6</text>
+    <text x="194" y="365" class="xlabel">7/7</text>
+    <text x="242" y="365" class="xlabel">7/8</text>
+    <text x="290" y="365" class="xlabel">7/9</text>
+    <text x="338" y="365" class="xlabel">7/10</text>
+    <text x="386" y="365" class="xlabel">7/11</text>
+    <text x="434" y="365" class="xlabel">7/12</text>
+    <text x="482" y="365" class="xlabel">7/13</text>
+    <text x="530" y="365" class="xlabel">7/14</text>
+    <text x="578" y="365" class="xlabel">7/15</text>
+    <text x="626" y="365" class="xlabel">7/16</text>
+    <text x="674" y="365" class="xlabel">7/17</text>
+    <text x="722" y="365" class="xlabel">7/18</text>
+    <text x="770" y="365" class="xlabel">7/19</text>
+    <text x="818" y="365" class="xlabel">7/20</text>
+    <text x="866" y="365" class="xlabel">7/21</text>
+    <text x="914" y="365" class="xlabel">7/22</text>
+
+    <!-- Week labels -->
+    <text x="98" y="380" class="small xlabel">三</text>
+    <text x="146" y="380" class="small xlabel">四</text>
+    <text x="194" y="380" class="small xlabel">五</text>
+    <text x="242" y="380" class="small xlabel">六</text>
+    <text x="290" y="380" class="small xlabel">日</text>
+    <text x="338" y="380" class="small xlabel">一</text>
+    <text x="386" y="380" class="small xlabel">二</text>
+    <text x="434" y="380" class="small xlabel">三</text>
+    <text x="482" y="380" class="small xlabel">四</text>
+    <text x="530" y="380" class="small xlabel">五</text>
+    <text x="578" y="380" class="small xlabel">六</text>
+    <text x="626" y="380" class="small xlabel">日</text>
+    <text x="674" y="380" class="small xlabel">一</text>
+    <text x="722" y="380" class="small xlabel">二</text>
+    <text x="770" y="380" class="small xlabel">三</text>
+    <text x="818" y="380" class="small xlabel">四</text>
+    <text x="866" y="380" class="small xlabel">五</text>
+    <text x="914" y="380" class="small xlabel">六</text>
+
+    <!-- Helper: each col = rect x="75+c*48" y= row ystart width=46 height= row height -->
+    <!-- Row 0 (Redis) y=88, h=33; Row 1 (SE基础) y=133, h=33; Row 2 (SE OOP) y=178, h=33; Row 3 (SE进阶) y=223, h=33; Row 4 (JavaWeb) y=268, h=33; Row 5 (项目) y=313, h=33 -->
+
+    <!-- ===== DATA ===== -->
+
+    <!-- Redis: 7/5(col0), 7/7(col2), 7/8(col3), 7/9(col4) -->
+    <rect x="75" y="88" width="46" height="33" rx="4" fill="#f59e0b" opacity="0.85"/>
+    <rect x="171" y="88" width="46" height="33" rx="4" fill="#f59e0b" opacity="0.85"/>
+    <rect x="219" y="88" width="46" height="33" rx="4" fill="#f59e0b" opacity="0.85"/>
+    <rect x="267" y="88" width="46" height="33" rx="4" fill="#f59e0b" opacity="0.85"/>
+
+    <!-- Redis labels -->
+    <text x="98" y="105" class="bar-label">基础入门</text>
+    <text x="194" y="105" class="bar-label">秒杀/锁</text>
+    <text x="242" y="105" class="bar-label">MQ</text>
+    <text x="290" y="105" class="bar-label">探店</text>
+
+    <!-- JavaSE基础: 7/9(col4) -- but we have 01-06 all on 7/9 -->
+    <rect x="267" y="133" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.85"/>
+    <text x="290" y="150" class="bar-label">入门到JVM</text>
+
+    <!-- JavaSE 面向对象: 7/16(col11), 7/19(col14) -->
+    <rect x="603" y="178" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.85"/>
+    <rect x="747" y="178" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.75"/>
+    <text x="626" y="195" class="bar-label">OOP/String</text>
+    <text x="770" y="195" class="bar-label">API/克隆</text>
+
+    <!-- JavaSE 进阶: 7/20(col15), 7/21(col16), 7/22(col17) -->
+    <rect x="795" y="223" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.8"/>
+    <rect x="843" y="223" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.85"/>
+    <rect x="891" y="223" width="46" height="33" rx="4" fill="#3b82f6" opacity="0.95"/>
+    <text x="818" y="240" class="bar-label">集合(一)</text>
+    <text x="866" y="240" class="bar-label">List/泛型</text>
+    <text x="914" y="240" class="bar-label">数据结构</text>
+
+    <!-- JavaWeb: 7/9(col4) -->
+    <rect x="267" y="268" width="46" height="33" rx="4" fill="#10b981" opacity="0.85"/>
+    <text x="290" y="285" class="bar-label">全15篇</text>
+
+    <!-- Axis line -->
+    <line x1="70" y1="395" x2="940" y2="395" class="axis-line"/>
+
+    <!-- Timeline markers -->
+    <text x="75" y="420" class="small">↑ 7/5 开始学 Redis</text>
+    <text x="290" y="440" class="small">↑ 7/9 JavaWeb 全部笔记整理完成 + JavaSE入门笔记</text>
+    <text x="603" y="460" class="small">↑ 7/16 JavaSE OOP &amp; String 开始</text>
+    <text x="795" y="480" class="small">↑ 7/20 集合进阶阶段开始</text>
+    <text x="891" y="500" class="small">↑ 7/22 上部学完 🎉</text>
+
+    <!-- Dots on timeline -->
+    <circle cx="75" cy="418" r="4" fill="#f59e0b"/>
+    <circle cx="290" cy="438" r="4" fill="#10b981"/>
+    <circle cx="603" cy="458" r="4" fill="#3b82f6"/>
+    <circle cx="795" cy="478" r="4" fill="#3b82f6"/>
+    <circle cx="914" cy="498" r="4" fill="#3b82f6"/>
+
+    <!-- Progress footer -->
+    <text x="20" y="550" class="subtitle">已完成：Redis 篇 · JavaSE 上部 · JavaWeb 全套</text>
+    <text x="20" y="570" class="subtitle">进行中：JavaSE 下部（进阶） — 今日起点</text>
+
+    <!-- Top milestones -->
+    <text x="267" y="82" class="small" fill="#f59e0b" text-anchor="middle">🔥 Redis 阶段</text>
+    <text x="290" y="128" class="small" fill="#3b82f6" text-anchor="middle">🔥 连续产出</text>
+    <text x="795" y="218" class="small" fill="#3b82f6" text-anchor="middle">🔥 下部开始</text>
+
+    <!-- Rest day indicators -->
+    <text x="146" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="338" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="386" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="434" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="482" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="530" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="578" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="674" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+    <text x="722" y="400" class="small" fill="#dc2626" text-anchor="middle">×</text>
+  </svg>
+</main>
