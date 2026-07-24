@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="1000" viewBox="0 0 860 1000">
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="1045" viewBox="0 0 860 1045">
   <text x="20" y="30" font-size="20" font-weight="650" fill="#172033">📚 学习历程时间线</text>
   <text x="20" y="50" font-size="13" fill="#5b6475">纵轴 = 时间 · 横轴 = 学习板块（往下越长，往后越全）</text>
 
   <!-- 列：日期(0~60) | JavaSE(70~340,宽270,中心205) | JavaWeb(350~620,宽270,中心485) | Redis(630~860,宽230,中心745) -->
   <!-- 行高44，首行y=82 -->
 
-  <line x1="60" y1="62" x2="60" y2="970" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="340" y1="62" x2="340" y2="970" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="620" y1="62" x2="620" y2="970" stroke="#cbd5e1" stroke-width="1"/>
-  <line x1="860" y1="62" x2="860" y2="970" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="60" y1="62" x2="60" y2="1015" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="340" y1="62" x2="340" y2="1015" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="620" y1="62" x2="620" y2="1015" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="860" y1="62" x2="860" y2="1015" stroke="#cbd5e1" stroke-width="1"/>
 
   <!-- 板块标签 -->
   <rect x="70" y="62" width="270" height="20" fill="#3b82f6" opacity="0.15" rx="3"/>
@@ -78,12 +78,12 @@
   <rect x="72" y="556" width="266" height="40" rx="5" fill="#3b82f6" opacity="0.85"/>
   <text x="205" y="580" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">面向对象 · String · 常用API</text>
 
-  <!-- Row 12: y=598 休息 -->
+  <!-- Row 12: y=598 -->
   <text x="30" y="625" font-size="12" fill="#94a3b8" text-anchor="middle">7/17</text>
   <text x="30" y="638" font-size="9" fill="#94a3b8" text-anchor="middle">六</text>
   <text x="205" y="632" font-size="11" fill="#d97706" font-weight="600" text-anchor="middle">⬇ 7/17-7/18 休息</text>
 
-  <!-- Row 13: y=642 休息 -->
+  <!-- Row 13: y=642 -->
   <text x="30" y="669" font-size="12" fill="#cbd5e1" text-anchor="middle">7/18</text>
   <text x="30" y="682" font-size="9" fill="#cbd5e1" text-anchor="middle">日</text>
 
@@ -122,13 +122,21 @@
   <rect x="72" y="864" width="266" height="40" rx="5" fill="#3b82f6" opacity="0.95"/>
   <text x="205" y="888" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">Map 集合 · HashMap/TreeMap 源码</text>
 
+  <!-- Row 19: y=906 -->
+  <line x1="60" y1="950" x2="860" y2="950" stroke="#f1f5f9" stroke-width="1"/>
+  <text x="30" y="933" font-size="12" font-weight="600" fill="#172033" text-anchor="middle">7/24</text>
+  <text x="30" y="946" font-size="9" fill="#94a3b8" text-anchor="middle">周五</text>
+  <rect x="72" y="908" width="266" height="40" rx="5" fill="#3b82f6" opacity="0.95"/>
+  <text x="205" y="932" font-size="11" fill="#ffffff" font-weight="600" text-anchor="middle">集合综练 · 斗地主 · 不可变集合 · Stream</text>
+
   <!-- 底部进度 -->
-  <text x="30" y="950" font-size="12" fill="#5b6475" text-anchor="middle">进度</text>
-  <rect x="80" y="938" width="10" height="10" rx="2" fill="#3b82f6" opacity="0.85"/>
-  <text x="95" y="948" font-size="11" fill="#172033">JavaSE 上部 ✅</text>
-  <rect x="185" y="938" width="10" height="10" rx="2" fill="#10b981" opacity="0.85"/>
-  <text x="200" y="948" font-size="11" fill="#172033">JavaWeb ✅</text>
-  <rect x="280" y="938" width="10" height="10" rx="2" fill="#f59e0b" opacity="0.85"/>
-  <text x="295" y="948" font-size="11" fill="#172033">Redis ✅</text>
-  <text x="485" y="950" font-size="11" fill="#5b6475" text-anchor="middle">进行中：JavaSE 下部（进阶） · 已学 16/39 篇</text>
+  <text x="30" y="990" font-size="12" fill="#5b6475" text-anchor="middle">进度</text>
+  <rect x="80" y="978" width="10" height="10" rx="2" fill="#3b82f6" opacity="0.85"/>
+  <text x="95" y="988" font-size="11" fill="#172033">JavaSE 上部 ✅</text>
+  <rect x="185" y="978" width="10" height="10" rx="2" fill="#10b981" opacity="0.85"/>
+  <text x="200" y="988" font-size="11" fill="#172033">JavaWeb ✅</text>
+  <rect x="280" y="978" width="10" height="10" rx="2" fill="#f59e0b" opacity="0.85"/>
+  <text x="295" y="988" font-size="11" fill="#172033">Redis ✅</text>
+  <text x="485" y="990" font-size="11" fill="#5b6475" text-anchor="middle">进行中：JavaSE 下部（进阶） · 已学 19/39 篇</text>
+  <text x="485" y="1005" font-size="11" fill="#5b6475" text-anchor="middle">覆盖：集合进阶 · 斗地主 · 不可变集合 · Stream 流基础</text>
 </svg>

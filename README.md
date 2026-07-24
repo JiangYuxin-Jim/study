@@ -27,6 +27,9 @@
 | [14 - 集合进阶（一）](./JavaSE/14-集合进阶（一）.md) | Collection/List 体系、ArrayList/LinkedList 源码、泛型、三种遍历方式 | 2026-07-20 |
 | [15 - 集合进阶（二）](./JavaSE/15-集合进阶（二）-数据结构与Set集合.md) | 数据结构(二叉树/平衡二叉树/红黑树)、HashSet/LinkedHashSet/TreeSet | 2026-07-22 |
 | [16 - Map 集合体系](./JavaSE/16-Map集合体系.md) | Map API、三种遍历方式、HashMap/TreeMap/LinkedHashMap 源码解析 | 2026-07-23 |
+| [17 - 集合工具类与综合练习](./JavaSE/17-集合工具类与综合练习.md) | 可变参数、Collections、随机点名器、加权随机算法、集合嵌套 | 2026-07-24 |
+| [18 - 斗地主阶段项目](./JavaSE/18-斗地主阶段项目.md) | 生成牌、洗牌、发牌、排序、面向对象设计 (Poker/Player)、游戏完善 | 2026-07-24 |
+| [19 - 不可变集合与 Stream 流基础](./JavaSE/19-不可变集合与Stream流基础.md) | 不可变集合 (of/copyOf)、Stream 流概述、四种获取方式、流水线模式 | 2026-07-24 |
 
 ### JavaWeb
 
